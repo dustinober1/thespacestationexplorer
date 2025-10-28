@@ -141,7 +141,7 @@ Each planet includes:
 
 ## Future Enhancements
 
-- [ ] Add moons for each planet
+- [x] Add moons for each planet
 - [ ] Include dwarf planets (Pluto, Ceres, etc.)
 - [ ] Add asteroid belt
 - [ ] Include space stations and satellites

@@ -32,7 +32,11 @@ function PlanetInfo({ planet }) {
         </div>
         <div className="info-item">
           <span className="label">Moons:</span>
-          <span className="value">{planet.moons}</span>
+          <span className="value">
+            {planet.moons.length > 0
+              ? planet.moons.map((moon) => moon.name).join(', ')
+              : 'None'}
+          </span>
         </div>
       </div>
       

@@ -9,7 +9,7 @@ const planets = [
     orbitalPeriod: 88,
     rotationPeriod: 1407.6,
     temperature: { min: -173, max: 427 },
-    moons: 0,
+    moons: [],
     color: '#8C7853',
     texture: 'mercury',
     facts: [
@@ -29,7 +29,7 @@ const planets = [
     orbitalPeriod: 225,
     rotationPeriod: -5832.5,
     temperature: { min: 462, max: 462 },
-    moons: 0,
+    moons: [],
     color: '#FFC649',
     texture: 'venus',
     facts: [
@@ -49,7 +49,7 @@ const planets = [
     orbitalPeriod: 365.25,
     rotationPeriod: 24,
     temperature: { min: -88, max: 58 },
-    moons: 1,
+    moons: [{ name: 'Moon' }],
     color: '#4169E1',
     texture: 'earth',
     facts: [
@@ -69,7 +69,7 @@ const planets = [
     orbitalPeriod: 687,
     rotationPeriod: 24.6,
     temperature: { min: -140, max: 20 },
-    moons: 2,
+    moons: [{ name: 'Phobos' }, { name: 'Deimos' }],
     color: '#CD5C5C',
     texture: 'mars',
     facts: [
@@ -89,7 +89,12 @@ const planets = [
     orbitalPeriod: 4333,
     rotationPeriod: 9.9,
     temperature: { min: -145, max: -145 },
-    moons: 95,
+    moons: [
+      { name: 'Io' },
+      { name: 'Europa' },
+      { name: 'Ganymede' },
+      { name: 'Callisto' }
+    ],
     color: '#DAA520',
     texture: 'jupiter',
     facts: [
@@ -109,7 +114,15 @@ const planets = [
     orbitalPeriod: 10759,
     rotationPeriod: 10.7,
     temperature: { min: -178, max: -178 },
-    moons: 146,
+    moons: [
+      { name: 'Titan' },
+      { name: 'Enceladus' },
+      { name: 'Rhea' },
+      { name: 'Iapetus' },
+      { name: 'Dione' },
+      { name: 'Tethys' },
+      { name: 'Mimas' }
+    ],
     color: '#F4A460',
     texture: 'saturn',
     hasRings: true,
@@ -130,7 +143,13 @@ const planets = [
     orbitalPeriod: 30687,
     rotationPeriod: -17.2,
     temperature: { min: -224, max: -224 },
-    moons: 27,
+    moons: [
+      { name: 'Miranda' },
+      { name: 'Ariel' },
+      { name: 'Umbriel' },
+      { name: 'Titania' },
+      { name: 'Oberon' }
+    ],
     color: '#4FD0E0',
     texture: 'uranus',
     hasRings: true,
@@ -151,7 +170,17 @@ const planets = [
     orbitalPeriod: 60190,
     rotationPeriod: 16.1,
     temperature: { min: -214, max: -214 },
-    moons: 14,
+    moons: [
+        { name: 'Triton' },
+        { name: 'Nereid' },
+        { name: 'Naiad' },
+        { name: 'Thalassa' },
+        { name: 'Despina' },
+        { name: 'Galatea' },
+        { name: 'Larissa' },
+        { name: 'Proteus' },
+        { name: 'Hippocamp' }
+    ],
     color: '#4169E1',
     texture: 'neptune',
     hasRings: true,
