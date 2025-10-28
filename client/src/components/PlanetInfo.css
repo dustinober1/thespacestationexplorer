@@ -1,0 +1,116 @@
+.planet-info {
+  position: absolute;
+  top: 120px;
+  right: 20px;
+  max-width: 350px;
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 10;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.planet-info::-webkit-scrollbar {
+  width: 8px;
+}
+
+.planet-info::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.planet-info::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.planet-info::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.planet-info h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  background: linear-gradient(45deg, #4FC3F7, #BA68C8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.planet-info .description {
+  color: #ccc;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-item .label {
+  color: #4FC3F7;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.info-item .value {
+  color: #fff;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.facts-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.facts-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #4FC3F7;
+}
+
+.facts-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.facts-section li {
+  padding: 10px;
+  margin-bottom: 8px;
+  background: rgba(79, 195, 247, 0.1);
+  border-left: 3px solid #4FC3F7;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+@media (max-width: 768px) {
+  .planet-info {
+    position: relative;
+    top: auto;
+    right: auto;
+    max-width: 100%;
+    margin: 20px;
+    max-height: 400px;
+  }
+}
