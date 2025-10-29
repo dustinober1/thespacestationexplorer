@@ -9,6 +9,10 @@ const planets = [
     orbitalPeriod: 88,
     rotationPeriod: 1407.6,
     temperature: { min: -173, max: 427 },
+    gravity: 3.7, // m/s²
+    density: 5.427, // g/cm³
+    escapeVelocity: 4.3, // km/s
+    axialTilt: 0.034, // degrees
     moons: [],
     color: '#8C7853',
     texture: 'mercury',
@@ -16,7 +20,8 @@ const planets = [
       'Mercury has no atmosphere to speak of',
       'A year on Mercury is just 88 Earth days',
       'Mercury has the most eccentric orbit',
-      'Despite being closest to the Sun, Mercury is not the hottest planet'
+      'Despite being closest to the Sun, Mercury is not the hottest planet',
+      'Mercury has permanently shadowed craters that contain water ice'
     ]
   },
   {
@@ -29,6 +34,10 @@ const planets = [
     orbitalPeriod: 225,
     rotationPeriod: -5832.5,
     temperature: { min: 462, max: 462 },
+    gravity: 8.87, // m/s²
+    density: 5.243, // g/cm³
+    escapeVelocity: 10.4, // km/s
+    axialTilt: 177.4, // degrees
     moons: [],
     color: '#FFC649',
     texture: 'venus',
@@ -36,7 +45,8 @@ const planets = [
       'Venus rotates backwards compared to other planets',
       'A day on Venus is longer than its year',
       'Venus has a thick, toxic atmosphere',
-      'It\'s often called Earth\'s "sister planet" due to similar size'
+      'It\'s often called Earth\'s "sister planet" due to similar size',
+      'Venus has volcanic features covering about 90% of its surface'
     ]
   },
   {
@@ -49,6 +59,10 @@ const planets = [
     orbitalPeriod: 365.25,
     rotationPeriod: 24,
     temperature: { min: -88, max: 58 },
+    gravity: 9.81, // m/s²
+    density: 5.514, // g/cm³
+    escapeVelocity: 11.2, // km/s
+    axialTilt: 23.44, // degrees
     moons: [{ name: 'Moon' }],
     color: '#4169E1',
     texture: 'earth',
@@ -56,7 +70,8 @@ const planets = [
       'Earth is the only known planet with liquid water on its surface',
       '71% of Earth\'s surface is covered by water',
       'Earth has a strong magnetic field',
-      'The planet is approximately 4.54 billion years old'
+      'The planet is approximately 4.54 billion years old',
+      'Earth\'s atmosphere is 78% nitrogen and 21% oxygen'
     ]
   },
   {
@@ -69,6 +84,10 @@ const planets = [
     orbitalPeriod: 687,
     rotationPeriod: 24.6,
     temperature: { min: -140, max: 20 },
+    gravity: 3.71, // m/s²
+    density: 3.933, // g/cm³
+    escapeVelocity: 5.0, // km/s
+    axialTilt: 25.19, // degrees
     moons: [{ name: 'Phobos' }, { name: 'Deimos' }],
     color: '#CD5C5C',
     texture: 'mars',
@@ -76,7 +95,8 @@ const planets = [
       'Mars has the largest volcano in the solar system (Olympus Mons)',
       'Mars has polar ice caps made of water and carbon dioxide',
       'A day on Mars is only slightly longer than an Earth day',
-      'Mars has two small moons: Phobos and Deimos'
+      'Mars has two small moons: Phobos and Deimos',
+      'Mars has a very thin atmosphere composed mainly of CO₂'
     ]
   },
   {
@@ -89,6 +109,10 @@ const planets = [
     orbitalPeriod: 4333,
     rotationPeriod: 9.9,
     temperature: { min: -145, max: -145 },
+    gravity: 24.79, // m/s²
+    density: 1.326, // g/cm³
+    escapeVelocity: 59.5, // km/s
+    axialTilt: 3.13, // degrees
     moons: [
       { name: 'Io' },
       { name: 'Europa' },
@@ -101,7 +125,8 @@ const planets = [
       'Jupiter\'s Great Red Spot is a storm larger than Earth',
       'Jupiter has the shortest day of all planets',
       'Jupiter has 95 known moons',
-      'Jupiter\'s magnetic field is 20,000 times stronger than Earth\'s'
+      'Jupiter\'s magnetic field is 20,000 times stronger than Earth\'s',
+      'Jupiter acts as a cosmic shield, protecting inner planets from comets'
     ]
   },
   {
@@ -114,6 +139,10 @@ const planets = [
     orbitalPeriod: 10759,
     rotationPeriod: 10.7,
     temperature: { min: -178, max: -178 },
+    gravity: 10.44, // m/s²
+    density: 0.687, // g/cm³
+    escapeVelocity: 35.5, // km/s
+    axialTilt: 26.73, // degrees
     moons: [
       { name: 'Titan' },
       { name: 'Enceladus' },
@@ -130,7 +159,8 @@ const planets = [
       'Saturn has the most spectacular ring system',
       'Saturn could float in water (if you had a big enough ocean)',
       'Saturn has 146 confirmed moons',
-      'Saturn\'s rings are made mostly of ice particles'
+      'Saturn\'s rings are made mostly of ice particles',
+      'Saturn radiates more than twice as much energy as it receives from the Sun'
     ]
   },
   {
@@ -143,6 +173,10 @@ const planets = [
     orbitalPeriod: 30687,
     rotationPeriod: -17.2,
     temperature: { min: -224, max: -224 },
+    gravity: 8.69, // m/s²
+    density: 1.27, // g/cm³
+    escapeVelocity: 21.3, // km/s
+    axialTilt: 97.77, // degrees
     moons: [
       { name: 'Miranda' },
       { name: 'Ariel' },
@@ -157,7 +191,8 @@ const planets = [
       'Uranus rotates on its side at a 98-degree angle',
       'Uranus was the first planet discovered with a telescope',
       'Uranus has 13 known rings',
-      'A season on Uranus lasts about 21 Earth years'
+      'A season on Uranus lasts about 21 Earth years',
+      'Uranus has the third-largest planetary radius in the Solar System'
     ]
   },
   {
@@ -170,6 +205,10 @@ const planets = [
     orbitalPeriod: 60190,
     rotationPeriod: 16.1,
     temperature: { min: -214, max: -214 },
+    gravity: 11.15, // m/s²
+    density: 1.638, // g/cm³
+    escapeVelocity: 23.5, // km/s
+    axialTilt: 28.32, // degrees
     moons: [
         { name: 'Triton' },
         { name: 'Nereid' },
@@ -188,7 +227,8 @@ const planets = [
       'Neptune has the strongest winds in the solar system',
       'Neptune was discovered through mathematical predictions',
       'Neptune has completed only one orbit since its discovery',
-      'Neptune has a Great Dark Spot similar to Jupiter\'s Great Red Spot'
+      'Neptune has a Great Dark Spot similar to Jupiter\'s Great Red Spot',
+      'Neptune\'s largest moon, Triton, is geologically active'
     ]
   },
   {
@@ -202,6 +242,10 @@ const planets = [
     orbitalPeriod: 90560,
     rotationPeriod: -153.3,
     temperature: { min: -233, max: -223 },
+    gravity: 0.62, // m/s²
+    density: 1.854, // g/cm³
+    escapeVelocity: 1.2, // km/s
+    axialTilt: 122.53, // degrees
     moons: [
       { name: 'Charon' },
       { name: 'Styx' },
@@ -215,7 +259,8 @@ const planets = [
       'Pluto was considered the ninth planet until 2006',
       'Pluto has a heart-shaped glacier that’s the size of Texas and Oklahoma combined',
       'Pluto is the largest dwarf planet',
-      'Pluto has a thin atmosphere of nitrogen, methane and carbon monoxide'
+      'Pluto has a thin atmosphere of nitrogen, methane and carbon monoxide',
+      'Pluto and Charon are sometimes considered a binary system'
     ]
   },
   {
@@ -229,6 +274,10 @@ const planets = [
     orbitalPeriod: 1682,
     rotationPeriod: 9.1,
     temperature: { min: -105, max: -38 },
+    gravity: 0.28, // m/s²
+    density: 2.162, // g/cm³
+    escapeVelocity: 0.51, // km/s
+    axialTilt: 4.0, // degrees
     moons: [],
     color: '#A9A9A9',
     texture: 'ceres',
@@ -236,7 +285,8 @@ const planets = [
       'Ceres is the only dwarf planet in the inner solar system',
       'Ceres may have a subsurface ocean',
       'Ceres is named after the Roman goddess of agriculture',
-      'Ceres was the first dwarf planet to be visited by a spacecraft'
+      'Ceres was the first dwarf planet to be visited by a spacecraft',
+      'Ceres comprises about a third of the asteroid belt\'s total mass'
     ]
   },
   {
@@ -250,6 +300,10 @@ const planets = [
     orbitalPeriod: 104073,
     rotationPeriod: 3.9,
     temperature: { min: -241, max: -241 },
+    gravity: 0.401, // m/s² (approximate)
+    density: 2.6, // g/cm³
+    escapeVelocity: 0.8, // km/s (approximate)
+    axialTilt: 122.5, // degrees
     moons: [
         { name: 'Namaka' },
         { name: 'Hiʻiaka' }
@@ -260,7 +314,8 @@ const planets = [
       'Haumea is one of the fastest rotating large objects in our solar system',
       'Haumea has two known moons',
       'Haumea is named after the Hawaiian goddess of childbirth',
-      'Haumea has a ring'
+      'Haumea has a ring',
+      'Haumea has an elongated ellipsoid shape due to its rapid rotation'
     ]
   },
   {
@@ -274,6 +329,10 @@ const planets = [
     orbitalPeriod: 112897,
     rotationPeriod: 22.5,
     temperature: { min: -239, max: -239 },
+    gravity: 0.5, // m/s² (estimated)
+    density: 1.7, // g/cm³ (estimated)
+    escapeVelocity: 0.3, // km/s (estimated)
+    axialTilt: 0, // degrees (unknown, assumed)
     moons: [],
     color: '#A9A9A9',
     texture: 'makemake',
@@ -281,7 +340,8 @@ const planets = [
       'Makemake is the second-brightest object in the Kuiper belt',
       'Makemake was discovered in 2005',
       'Makemake is named after the Rapa Nui god of fertility',
-      'Makemake has no known moons'
+      'Makemake has no known moons',
+      'Makemake\'s surface is covered with methane, ethane, and nitrogen ices'
     ]
   },
   {
@@ -295,6 +355,10 @@ const planets = [
     orbitalPeriod: 203830,
     rotationPeriod: 25.9,
     temperature: { min: -243, max: -217 },
+    gravity: 0.82, // m/s² (estimated)
+    density: 2.52, // g/cm³ (estimated)
+    escapeVelocity: 1.3, // km/s (estimated)
+    axialTilt: 79, // degrees (estimated)
     moons: [
         { name: 'Dysnomia' }
     ],
@@ -304,9 +368,11 @@ const planets = [
       'Eris is the most massive and second-largest known dwarf planet in the Solar System',
       'The discovery of Eris led to the reclassification of Pluto as a dwarf planet',
       'Eris is named after the Greek goddess of discord',
-      'Eris has one known moon, Dysnomia'
+      'Eris has one known moon, Dysnomia',
+      'Eris is one of the most distant dwarf planets discovered'
     ]
   }
+];
 ];
 
 module.exports = planets;

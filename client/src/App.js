@@ -4,6 +4,7 @@ import SpaceScene from './components/SpaceScene';
 import PlanetInfo from './components/PlanetInfo';
 import PlanetSelector from './components/PlanetSelector';
 import SearchBar from './components/SearchBar';
+import SoundControl from './components/SoundControl';
 import './App.css';
 
 /**
@@ -16,6 +17,7 @@ function App() {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showSolarSystem, setShowSolarSystem] = useState(false);
 
   /**
    * Fetches planet data from the backend API
@@ -48,6 +50,7 @@ function App() {
     const planet = planets.find(p => p.id === planetId);
     if (planet) {
       setSelectedPlanet(planet);
+      setShowSolarSystem(false); // Switch back to planet view when selecting a planet
     }
   }, [planets]);
 
@@ -72,6 +75,13 @@ function App() {
     }
   }, [selectedPlanet, planets]);
 
+  const toggleSolarSystemView = useCallback(() => {
+    setShowSolarSystem(prev => !prev);
+    if (!showSolarSystem) {
+      setSelectedPlanet(null); // Clear selected planet when showing solar system
+    }
+  }, [showSolarSystem]);
+
   if (loading) {
     return (
       <div className="loading">
@@ -94,6 +104,9 @@ function App() {
       <header className="app-header">
         <h1>🚀 Space Station Explorer</h1>
         <p>Explore the Planets of Our Solar System</p>
+        <button className="solar-system-toggle" onClick={toggleSolarSystemView}>
+          {showSolarSystem ? '← Back to Planet View' : '🌐 Solar System View'}
+        </button>
       </header>
       
       <SearchBar 
@@ -101,18 +114,27 @@ function App() {
         onSearch={handleSearch}
       />
       
-      <PlanetSelector 
-        planets={filteredPlanets}
-        selectedPlanet={selectedPlanet}
-        onSelectPlanet={handlePlanetSelect}
+      {!showSolarSystem && (
+        <PlanetSelector 
+          planets={filteredPlanets}
+          selectedPlanet={selectedPlanet}
+          onSelectPlanet={handlePlanetSelect}
+        />
+      )}
+      
+      <SpaceScene 
+        planet={selectedPlanet} 
+        planets={planets} 
+        showSolarSystem={showSolarSystem} 
       />
       
-      <SpaceScene planet={selectedPlanet} />
+      {!showSolarSystem && selectedPlanet && <PlanetInfo planet={selectedPlanet} />}
       
-      {selectedPlanet && <PlanetInfo planet={selectedPlanet} />}
+      <SoundControl />
       
       <div className="controls-info">
         <p>🖱️ Click and drag to rotate | Scroll to zoom</p>
+        {showSolarSystem && <p>✨ Solar System View: All planets with orbital paths</p>}
       </div>
     </div>
   );

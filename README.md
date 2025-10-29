@@ -150,7 +150,6 @@ Each planet includes:
 - [ ] Add search functionality
 - [ ] Include more detailed scientific data
 - [ ] Add sound effects
-- [ ] Implement VR support
 
 ## Contributing
 

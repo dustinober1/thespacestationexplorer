@@ -44,6 +44,30 @@ function PlanetInfo({ planet }) {
               : 'None'}
           </span>
         </div>
+        {planet.gravity !== undefined && (
+          <div className="info-item">
+            <span className="label">Surface Gravity:</span>
+            <span className="value">{planet.gravity} m/s²</span>
+          </div>
+        )}
+        {planet.density !== undefined && (
+          <div className="info-item">
+            <span className="label">Density:</span>
+            <span className="value">{planet.density} g/cm³</span>
+          </div>
+        )}
+        {planet.escapeVelocity !== undefined && (
+          <div className="info-item">
+            <span className="label">Escape Velocity:</span>
+            <span className="value">{planet.escapeVelocity} km/s</span>
+          </div>
+        )}
+        {planet.axialTilt !== undefined && (
+          <div className="info-item">
+            <span className="label">Axial Tilt:</span>
+            <span className="value">{planet.axialTilt}°</span>
+          </div>
+        )}
       </div>
       
       <div className="facts-section">
@@ -75,6 +99,10 @@ PlanetInfo.propTypes = {
       }),
       PropTypes.number
     ]),
+    gravity: PropTypes.number,
+    density: PropTypes.number,
+    escapeVelocity: PropTypes.number,
+    axialTilt: PropTypes.number,
     moons: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired

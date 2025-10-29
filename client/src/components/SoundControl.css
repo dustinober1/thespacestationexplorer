@@ -1,0 +1,63 @@
+.sound-control {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 8px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sound-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.sound-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.volume-slider {
+  width: 80px;
+  height: 4px;
+  background: #444;
+  border-radius: 2px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #4FC3F7;
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #4FC3F7;
+  cursor: pointer;
+  border: none;
+}
