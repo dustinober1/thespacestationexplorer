@@ -5,6 +5,7 @@ import PlanetInfo from './components/PlanetInfo';
 import PlanetSelector from './components/PlanetSelector';
 import SearchBar from './components/SearchBar';
 import SoundControl from './components/SoundControl';
+import NasaData from './components/NasaData';
 import './App.css';
 
 /**
@@ -129,6 +130,8 @@ function App() {
       />
       
       {!showSolarSystem && selectedPlanet && <PlanetInfo planet={selectedPlanet} />}
+      
+      <NasaData planet={selectedPlanet} />
       
       <SoundControl />
       

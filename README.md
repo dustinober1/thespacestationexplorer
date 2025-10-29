@@ -54,6 +54,14 @@ A full-stack web application for visually exploring the planets of our solar sys
    cp .env.example .env
    ```
 
+5. **Get NASA API Key (optional but recommended)**
+   - Visit [NASA API Portal](https://api.nasa.gov/)
+   - Sign up for a free API key
+   - Add your API key to the `.env` file:
+   ```
+   REACT_APP_NASA_API_KEY=your_nasa_api_key_here
+   ```
+
 ## Running the Application
 
 ### Development Mode (Recommended)
@@ -150,6 +158,7 @@ Each planet includes:
 - [x] Add search functionality
 - [x] Include more detailed scientific data
 - [x] Add sound effects
+- [x] Include real-time astronomical data from NASA APIs
 
 ## New Features Implemented
 
@@ -160,6 +169,7 @@ Each planet includes:
 - **Enhanced Visuals**: Improved material properties for more realistic planet appearance
 - **Search Functionality**: Find planets by name or description
 - **Texture Ready System**: Framework ready for real planetary textures
+- **Real-Time Astronomical Data**: Integration with NASA APIs for current space data
 
 ## Additional Future Developments
 
