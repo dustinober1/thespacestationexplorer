@@ -1,6 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './PlanetInfo.css';
 
+/**
+ * PlanetInfo component displays detailed information about a selected planet
+ * @param {Object} planet - The planet object containing its properties
+ * @returns {JSX.Element|null} The planet info component or null if no planet is provided
+ */
 function PlanetInfo({ planet }) {
   if (!planet) return null;
 
@@ -33,8 +39,8 @@ function PlanetInfo({ planet }) {
         <div className="info-item">
           <span className="label">Moons:</span>
           <span className="value">
-            {planet.moons.length > 0
-              ? planet.moons.map((moon) => moon.name).join(', ')
+            {planet.moons && planet.moons.length > 0
+              ? planet.moons.map((moon, index) => moon.name).join(', ')
               : 'None'}
           </span>
         </div>
@@ -43,7 +49,7 @@ function PlanetInfo({ planet }) {
       <div className="facts-section">
         <h3>🌟 Interesting Facts</h3>
         <ul>
-          {planet.facts.map((fact, index) => (
+          {planet.facts && planet.facts.map((fact, index) => (
             <li key={index}>{fact}</li>
           ))}
         </ul>
@@ -51,5 +57,35 @@ function PlanetInfo({ planet }) {
     </div>
   );
 }
+
+PlanetInfo.propTypes = {
+  planet: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    diameter: PropTypes.number.isRequired,
+    mass: PropTypes.string.isRequired,
+    distanceFromSun: PropTypes.number.isRequired,
+    orbitalPeriod: PropTypes.number.isRequired,
+    rotationPeriod: PropTypes.number.isRequired,
+    temperature: PropTypes.oneOfType([
+      PropTypes.shape({
+        min: PropTypes.number,
+        max: PropTypes.number
+      }),
+      PropTypes.number
+    ]),
+    moons: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired
+      })
+    ),
+    color: PropTypes.string,
+    texture: PropTypes.string,
+    hasRings: PropTypes.bool,
+    type: PropTypes.string,
+    facts: PropTypes.arrayOf(PropTypes.string).isRequired
+  })
+};
 
 export default PlanetInfo;

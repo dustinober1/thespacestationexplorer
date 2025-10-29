@@ -190,6 +190,122 @@ const planets = [
       'Neptune has completed only one orbit since its discovery',
       'Neptune has a Great Dark Spot similar to Jupiter\'s Great Red Spot'
     ]
+  },
+  {
+    id: 'pluto',
+    name: 'Pluto',
+    type: 'dwarf planet',
+    description: 'A dwarf planet in the Kuiper belt, a ring of bodies beyond Neptune.',
+    diameter: 2376,
+    mass: '1.309 × 10^22 kg',
+    distanceFromSun: 5906.4,
+    orbitalPeriod: 90560,
+    rotationPeriod: -153.3,
+    temperature: { min: -233, max: -223 },
+    moons: [
+      { name: 'Charon' },
+      { name: 'Styx' },
+      { name: 'Nix' },
+      { name: 'Kerberos' },
+      { name: 'Hydra' }
+    ],
+    color: '#A9A9A9',
+    texture: 'pluto',
+    facts: [
+      'Pluto was considered the ninth planet until 2006',
+      'Pluto has a heart-shaped glacier that’s the size of Texas and Oklahoma combined',
+      'Pluto is the largest dwarf planet',
+      'Pluto has a thin atmosphere of nitrogen, methane and carbon monoxide'
+    ]
+  },
+  {
+    id: 'ceres',
+    name: 'Ceres',
+    type: 'dwarf planet',
+    description: 'The largest object in the asteroid belt between Mars and Jupiter.',
+    diameter: 946,
+    mass: '9.393 × 10^20 kg',
+    distanceFromSun: 413.7,
+    orbitalPeriod: 1682,
+    rotationPeriod: 9.1,
+    temperature: { min: -105, max: -38 },
+    moons: [],
+    color: '#A9A9A9',
+    texture: 'ceres',
+    facts: [
+      'Ceres is the only dwarf planet in the inner solar system',
+      'Ceres may have a subsurface ocean',
+      'Ceres is named after the Roman goddess of agriculture',
+      'Ceres was the first dwarf planet to be visited by a spacecraft'
+    ]
+  },
+  {
+    id: 'haumea',
+    name: 'Haumea',
+    type: 'dwarf planet',
+    description: 'A dwarf planet in the Kuiper belt that is shaped like an egg.',
+    diameter: 1632,
+    mass: '4.006 × 10^21 kg',
+    distanceFromSun: 6452,
+    orbitalPeriod: 104073,
+    rotationPeriod: 3.9,
+    temperature: { min: -241, max: -241 },
+    moons: [
+        { name: 'Namaka' },
+        { name: 'Hiʻiaka' }
+    ],
+    color: '#A9A9A9',
+    texture: 'haumea',
+    facts: [
+      'Haumea is one of the fastest rotating large objects in our solar system',
+      'Haumea has two known moons',
+      'Haumea is named after the Hawaiian goddess of childbirth',
+      'Haumea has a ring'
+    ]
+  },
+  {
+    id: 'makemake',
+    name: 'Makemake',
+    type: 'dwarf planet',
+    description: 'A dwarf planet in the Kuiper belt that is slightly smaller than Pluto.',
+    diameter: 1434,
+    mass: '3.1 × 10^21 kg',
+    distanceFromSun: 6850,
+    orbitalPeriod: 112897,
+    rotationPeriod: 22.5,
+    temperature: { min: -239, max: -239 },
+    moons: [],
+    color: '#A9A9A9',
+    texture: 'makemake',
+    facts: [
+      'Makemake is the second-brightest object in the Kuiper belt',
+      'Makemake was discovered in 2005',
+      'Makemake is named after the Rapa Nui god of fertility',
+      'Makemake has no known moons'
+    ]
+  },
+  {
+    id: 'eris',
+    name: 'Eris',
+    type: 'dwarf planet',
+    description: 'A dwarf planet in the scattered disc which is more massive than Pluto.',
+    diameter: 2326,
+    mass: '1.66 × 10^22 kg',
+    distanceFromSun: 10125,
+    orbitalPeriod: 203830,
+    rotationPeriod: 25.9,
+    temperature: { min: -243, max: -217 },
+    moons: [
+        { name: 'Dysnomia' }
+    ],
+    color: '#A9A9A9',
+    texture: 'eris',
+    facts: [
+      'Eris is the most massive and second-largest known dwarf planet in the Solar System',
+      'The discovery of Eris led to the reclassification of Pluto as a dwarf planet',
+      'Eris is named after the Greek goddess of discord',
+      'Eris has one known moon, Dysnomia'
+    ]
   }
 ];
 

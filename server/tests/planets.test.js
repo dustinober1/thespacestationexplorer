@@ -9,7 +9,7 @@ describe('GET /api/planets', () => {
   it('should return all planets', async () => {
     const res = await request(app).get('/api/planets');
     expect(res.statusCode).toEqual(200);
-    expect(res.body.length).toBe(8);
+    expect(res.body.length).toBe(13); // Updated to include dwarf planets
   });
 });
 
@@ -21,7 +21,7 @@ describe('GET /api/planets/:id', () => {
   });
 
   it('should return 404 for a non-existent planet', async () => {
-    const res = await request(app).get('/api/planets/pluto');
+    const res = await request(app).get('/api/planets/marsupial');
     expect(res.statusCode).toEqual(404);
   });
 });
