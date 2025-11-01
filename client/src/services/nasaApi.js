@@ -109,34 +109,27 @@ export const getAsteroidsComets = async () => {
  * @returns {Promise<Object>} Promise that resolves to mission data
  */
 export const getSpaceMissions = async () => {
-  try {
-    // This is a placeholder - NASA doesn't have a single endpoint for all missions
-    // This would need to be implemented with multiple endpoints or a custom service
-    return {
-      missions: [
-        {
-          name: 'International Space Station',
-          status: 'Active',
-          description: 'Orbital laboratory in low Earth orbit',
-          location: 'Low Earth Orbit',
-          crew: '7 astronauts',
-          launched: '1998'
-        },
-        {
-          name: 'James Webb Space Telescope',
-          status: 'Operational',
-          description: 'Deep space space telescope',
-          location: 'Lagrange Point 2',
-          launched: '2022'
-        }
-      ]
-    };
-  } catch (error) {
-    console.error('Error fetching space missions:', error);
-    return {
-      missions: []
-    };
-  }
+  // This is a placeholder - NASA doesn't have a single endpoint for all missions
+  // This would need to be implemented with multiple endpoints or a custom service
+  return {
+    missions: [
+      {
+        name: 'International Space Station',
+        status: 'Active',
+        description: 'Orbital laboratory in low Earth orbit',
+        location: 'Low Earth Orbit',
+        crew: '7 astronauts',
+        launched: '1998'
+      },
+      {
+        name: 'James Webb Space Telescope',
+        status: 'Operational',
+        description: 'Deep space space telescope',
+        location: 'Lagrange Point 2',
+        launched: '2022'
+      }
+    ]
+  };
 };
 
 /**

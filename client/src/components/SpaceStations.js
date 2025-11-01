@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import { Line, Instances, Instance } from '@react-three/drei';
-import * as THREE from 'three';
+import { Line } from '@react-three/drei';
+
 import PropTypes from 'prop-types';
 
 /**

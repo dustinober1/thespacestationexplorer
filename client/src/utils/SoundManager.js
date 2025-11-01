@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useRef } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Create SoundContext
@@ -16,10 +16,7 @@ export const useSound = () => {
 // Sound provider component
 export const SoundProvider = ({ children }) => {
   const [isMuted, setIsMuted] = useState(false);
-  const [volume, setVolume] = useState(0.3); // Default to 30% volume to prevent loud sounds
-  
-  // Audio elements will be created as needed
-  const audioRefs = useRef({});
+  const [volume, setVolume] = useState(0.5);
 
   // Function to play a sound
   const playSound = async (soundType, options = {}) => {

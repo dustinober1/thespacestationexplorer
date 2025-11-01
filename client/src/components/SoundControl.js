@@ -1,7 +1,5 @@
 import React from 'react';
 import { useSound } from '../utils/SoundManager';
-import './SoundControl.css';
-import PropTypes from 'prop-types';
 
 /**
  * SoundControl component provides UI for sound management
@@ -40,8 +38,6 @@ function SoundControl() {
   );
 }
 
-SoundControl.propTypes = {
-  // No props needed, uses context
-};
+
 
 export default SoundControl;

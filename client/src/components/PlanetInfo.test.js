@@ -1,7 +1,9 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import PlanetInfo from './PlanetInfo';
 
 const mockPlanet = {
+  id: '1',
   name: 'Mars',
   description: 'The Red Planet',
   diameter: 6779,

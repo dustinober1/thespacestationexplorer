@@ -1,6 +1,6 @@
-import React, { useRef, useMemo, useState } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { VRCanvas, ARCanvas, DefaultXRControllers, VRButton } from '@react-three/xr';
+import { XR, VRButton } from '@react-three/xr';
 import { OrbitControls, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import PropTypes from 'prop-types';
@@ -88,6 +88,8 @@ function Planet({ planet }) {
             metalness: 0.15
           };
           break;
+        default:
+          break;
       }
 
       return new THREE.MeshStandardMaterial(materialParams);
@@ -133,9 +135,6 @@ function Planet({ planet }) {
   });
 
   if (!planet || !geometry) return null;
-
-  // Calculate planet size based on diameter (scaled down)
-  const size = Math.max(1, Math.log(planet.diameter) / 2);
 
   return (
     <group>
@@ -265,7 +264,7 @@ function SpaceScene({ planet, planets = [], showSolarSystem = false }) {
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <VRButton />
-      <VRCanvas
+      <Canvas
         camera={{ 
           position: showSolarSystem ? [0, 30, 60] : [0, 0, planet ? 8 : 20], 
           fov: showSolarSystem ? 60 : 60 
@@ -273,7 +272,7 @@ function SpaceScene({ planet, planets = [], showSolarSystem = false }) {
         style={{ background: 'transparent' }}
         gl={{ antialias: true }}
       >
-        <DefaultXRControllers />
+        <XR>
         <ambientLight intensity={0.2} />
         <pointLight position={[0, 0, 0]} intensity={1.5} color="#FDB813" /> {/* Sun */}
         <pointLight position={[10, 10, 10]} intensity={0.5} />
@@ -305,7 +304,8 @@ function SpaceScene({ planet, planets = [], showSolarSystem = false }) {
           maxDistance={showSolarSystem ? 200 : planet ? 15 : 50}
           rotateSpeed={0.5}
         />
-      </VRCanvas>
+        </XR>
+      </Canvas>
     </div>
   );
 }
