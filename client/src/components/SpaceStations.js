@@ -1,7 +1,13 @@
 import React, { useMemo } from 'react';
 import { Line } from '@react-three/drei';
+import * as THREE from 'three';
 
 import PropTypes from 'prop-types';
+
+// Moon texture mapping
+const moonTextureMap = {
+  'Moon': '/textures/8k_moon.jpg'
+};
 
 /**
  * SpaceStations component displays space stations and satellites orbiting planets
@@ -17,7 +23,10 @@ function SpaceStations({ planet, celestialObjects = [] }) {
     return planet.moons.map((moon, index) => {
       // Calculate orbital distance based on position in the array
       const baseDistance = Math.max(1, Math.log(planet.diameter) / 2) * 1.5;
-      const distance = baseDistance + (index * 0.5); // Increase distance for each moon
+      // Make Moon orbit much farther for better visibility
+      const distance = moon.name === 'Moon'
+        ? baseDistance + 1.5  // Moon gets extra distance
+        : baseDistance + (index * 0.5); // Other moons
       const orbitPoints = [];
       const segments = 64;
       
@@ -70,13 +79,35 @@ function SpaceStations({ planet, celestialObjects = [] }) {
         />
       ))}
       
-      {/* Render satellites/moons as small spheres */}
-      {satellitePositions.map((sat, index) => (
-        <mesh key={`sat-${sat.id}`} position={sat.position}>
-          <sphereGeometry args={[0.1, 8, 8]} />
-          <meshStandardMaterial color="#C0C0C0" />
-        </mesh>
-      ))}
+      {/* Render satellites/moons as spheres */}
+      {satellitePositions.map((sat, index) => {
+        // Load texture for the Moon
+        const moonTexture = useMemo(() => {
+          if (sat.name === 'Moon' && moonTextureMap[sat.name]) {
+            const loader = new THREE.TextureLoader();
+            const texture = loader.load(moonTextureMap[sat.name]);
+            texture.colorSpace = THREE.SRGBColorSpace;
+            return texture;
+          }
+          return null;
+        }, [sat.name]);
+
+        // Determine size - Moon should be bigger
+        const isMoon = sat.name === 'Moon';
+        const size = isMoon ? 0.3 : 0.1; // 3x bigger for the Moon!
+
+        return (
+          <mesh key={`sat-${sat.id}`} position={sat.position}>
+            <sphereGeometry args={[size, 16, 16]} />
+            <meshStandardMaterial
+              map={moonTexture}
+              color={moonTexture ? '#ffffff' : '#C0C0C0'}
+              roughness={0.7}
+              metalness={0.2}
+            />
+          </mesh>
+        );
+      })}
     </>
   );
 }
@@ -88,7 +119,8 @@ SpaceStations.propTypes = {
     diameter: PropTypes.number.isRequired,
     moons: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired
+        name: PropTypes.string.isRequired,
+        facts: PropTypes.arrayOf(PropTypes.string)
       })
     )
   }),

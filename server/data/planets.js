@@ -63,7 +63,16 @@ const planets = [
     density: 5.514, // g/cm³
     escapeVelocity: 11.2, // km/s
     axialTilt: 23.44, // degrees
-    moons: [{ name: 'Moon' }],
+    moons: [{
+      name: 'Moon',
+      facts: [
+        'The Moon is Earth\'s only natural satellite',
+        'It\'s the fifth-largest moon in the solar system',
+        'The Moon is tidally locked to Earth, showing the same face',
+        'The Moon causes Earth\'s ocean tides',
+        'The Moon is slowly moving away from Earth at 3.8cm per year'
+      ]
+    }],
     color: '#4169E1',
     texture: 'earth',
     facts: [

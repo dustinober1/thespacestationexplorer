@@ -11,7 +11,7 @@ import SpaceStations from './SpaceStations';
 const textureMap = {
   mercury: '/textures/8k_mercury.jpg',
   venus: '/textures/venus.jpg',
-  earth: '/textures/8k_earth_daymap.jpg',
+  earth: '/textures/8k_earth_clouds.jpg',
   mars: '/textures/mars.jpg',
   jupiter: '/textures/jupiter.jpg',
   saturn: '/textures/saturn.jpg',
@@ -22,7 +22,7 @@ const textureMap = {
   haumea: '/textures/haumea.jpg',
   makemake: '/textures/makemake.jpg',
   eris: '/textures/eris.jpg',
-  sun: '/textures/8k_sun.jpg'
+  sun: '/textures/sun_solarsystemscope.jpg'
 };
 
 /**
@@ -35,7 +35,8 @@ function Sun() {
   const texture = useMemo(() => {
     const loader = new THREE.TextureLoader();
     try {
-      const loadedTexture = loader.load('/textures/sun.jpg');
+      const texturePath = textureMap['sun'];
+      const loadedTexture = loader.load(texturePath);
       loadedTexture.colorSpace = THREE.SRGBColorSpace;
       return loadedTexture;
     } catch (error) {
@@ -53,11 +54,11 @@ function Sun() {
   const material = useMemo(() => {
     return new THREE.MeshStandardMaterial({
       map: texture,
-      color: '#FDB813',
-      emissive: '#FDB813',
-      emissiveIntensity: 0.5,
-      roughness: 0.8,
-      metalness: 0.2
+      color: '#FFFFFF',
+      emissive: '#FFA500',
+      emissiveIntensity: 1.5, // Balanced - texture visible!
+      roughness: 0.3, // Smooth but not mirror-like
+      metalness: 0.4 // Reflective but not overdone
     });
   }, [texture]);
 
@@ -69,8 +70,8 @@ function Sun() {
 
   return (
     <mesh ref={meshRef} geometry={geometry} material={material}>
-      {/* Add point light to simulate sun's glow */}
-      <pointLight intensity={3} color="#FDB813" distance={100} decay={2} />
+      {/* Add point light to simulate sun's glow - balanced */}
+      <pointLight intensity={2.5} color="#FFFFFF" distance={100} decay={2} />
     </mesh>
   );
 }
@@ -123,17 +124,13 @@ function Planet({ planet }) {
       // Adjust properties for different planets
       switch(planet?.id) {
         case 'earth':
-          materialParams.roughness = 0.6;
-          materialParams.metalness = 0.1;
+          materialParams.roughness = 0.5; // Smoother, more reflective
+          materialParams.metalness = 0.25;
           break;
         case 'jupiter':
         case 'saturn':
           materialParams.roughness = 0.8;
           materialParams.metalness = 0.05;
-          break;
-        case 'mercury':
-          materialParams.roughness = 0.9;
-          materialParams.metalness = 0.1;
           break;
         case 'venus':
           materialParams.roughness = 0.7;
@@ -199,12 +196,9 @@ function Planet({ planet }) {
   return (
     <group>
       <mesh ref={meshRef} geometry={geometry} material={material} />
-      
       {planet.hasRings && ringGeometry && (
         <mesh rotation={[Math.PI / 2, 0, 0]} geometry={ringGeometry} material={ringMaterial} />
       )}
-      
-      {/* Add space stations and satellites if the planet has moons */}
       {planet.moons && planet.moons.length > 0 && (
         <SpaceStations planet={planet} />
       )}
@@ -338,7 +332,7 @@ function SpaceScene({ planet, planets = [], showSolarSystem = false }) {
   const milkyWayTexture = useMemo(() => {
     const loader = new THREE.TextureLoader();
     try {
-      const loadedTexture = loader.load('/textures/8k_stars.jpg');
+      const loadedTexture = loader.load('/textures/Texturelabs_Sky_173XL.jpg');
       loadedTexture.colorSpace = THREE.SRGBColorSpace;
       return loadedTexture;
     } catch (error) {
@@ -369,9 +363,11 @@ function SpaceScene({ planet, planets = [], showSolarSystem = false }) {
           }
         }}
       >
-        <ambientLight intensity={0.3} />
-        <pointLight position={[0, 0, 0]} intensity={2} color="#FDB813" />
-        <pointLight position={[50, 50, 50]} intensity={0.8} color="#ffffff" />
+        <ambientLight intensity={1.5} color="#ffffff" />
+        <pointLight position={[0, 0, 0]} intensity={3} color="#FDB813" />
+        <pointLight position={[50, 50, 50]} intensity={1.2} color="#ffffff" />
+        <pointLight position={[-50, -50, 50]} intensity={0.8} color="#ffffff" />
+        <pointLight position={[50, -50, -50]} intensity={0.8} color="#ffffff" />
 
         {/* Deep space stars - far background */}
         <Stars
