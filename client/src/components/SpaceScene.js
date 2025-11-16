@@ -9,7 +9,7 @@ import SpaceStations from './SpaceStations';
 
 // Planet texture mapping
 const textureMap = {
-  mercury: '/textures/mercury.jpg',
+  mercury: '/textures/8k_mercury.jpg',
   venus: '/textures/venus.jpg',
   earth: '/textures/8k_earth_daymap.jpg',
   mars: '/textures/mars.jpg',
@@ -22,7 +22,7 @@ const textureMap = {
   haumea: '/textures/haumea.jpg',
   makemake: '/textures/makemake.jpg',
   eris: '/textures/eris.jpg',
-  sun: '/textures/sun.jpg'
+  sun: '/textures/8k_sun.jpg'
 };
 
 /**
@@ -338,11 +338,11 @@ function SpaceScene({ planet, planets = [], showSolarSystem = false }) {
   const milkyWayTexture = useMemo(() => {
     const loader = new THREE.TextureLoader();
     try {
-      const loadedTexture = loader.load('/textures/milky_way.jpg');
+      const loadedTexture = loader.load('/textures/8k_stars.jpg');
       loadedTexture.colorSpace = THREE.SRGBColorSpace;
       return loadedTexture;
     } catch (error) {
-      console.warn('Milky way texture not found, using black background');
+      console.warn('Stars texture not found, using black background');
       return null;
     }
   }, []);
