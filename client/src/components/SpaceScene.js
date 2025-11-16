@@ -1,6 +1,6 @@
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Stars, useTexture } from '@react-three/drei';
+import { OrbitControls, Stars, useLoader } from '@react-three/drei';
 import * as THREE from 'three';
 import PropTypes from 'prop-types';
 import AsteroidBelt from './AsteroidBelt';
@@ -11,7 +11,7 @@ import SpaceStations from './SpaceStations';
 const textureMap = {
   mercury: '/textures/mercury.jpg',
   venus: '/textures/venus.jpg',
-  earth: '/textures/earth.jpg',
+  earth: '/textures/8k_earth_daymap.jpg',
   mars: '/textures/mars.jpg',
   jupiter: '/textures/jupiter.jpg',
   saturn: '/textures/saturn.jpg',
@@ -21,8 +21,59 @@ const textureMap = {
   ceres: '/textures/ceres.jpg',
   haumea: '/textures/haumea.jpg',
   makemake: '/textures/makemake.jpg',
-  eris: '/textures/eris.jpg'
+  eris: '/textures/eris.jpg',
+  sun: '/textures/sun.jpg'
 };
+
+/**
+ * Sun component with texture and glow effect
+ */
+function Sun() {
+  const meshRef = useRef();
+
+  // Load sun texture
+  const texture = useMemo(() => {
+    const loader = new THREE.TextureLoader();
+    try {
+      const loadedTexture = loader.load('/textures/sun.jpg');
+      loadedTexture.colorSpace = THREE.SRGBColorSpace;
+      return loadedTexture;
+    } catch (error) {
+      console.warn('Texture not found for sun, using color fallback');
+      return null;
+    }
+  }, []);
+
+  // Sun geometry - larger than planets
+  const geometry = useMemo(() => {
+    return new THREE.SphereGeometry(4, 64, 64);
+  }, []);
+
+  // Sun material with emissive glow
+  const material = useMemo(() => {
+    return new THREE.MeshStandardMaterial({
+      map: texture,
+      color: '#FDB813',
+      emissive: '#FDB813',
+      emissiveIntensity: 0.5,
+      roughness: 0.8,
+      metalness: 0.2
+    });
+  }, [texture]);
+
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.001;
+    }
+  });
+
+  return (
+    <mesh ref={meshRef} geometry={geometry} material={material}>
+      {/* Add point light to simulate sun's glow */}
+      <pointLight intensity={3} color="#FDB813" distance={100} decay={2} />
+    </mesh>
+  );
+}
 
 /**
  * Individual planet component in the 3D scene
@@ -30,15 +81,22 @@ const textureMap = {
 function Planet({ planet }) {
   const meshRef = useRef();
 
-  // Load planet texture with error handling
+  // Load planet texture with error handling using THREE.TextureLoader
   const texturePath = textureMap[planet?.id];
-  let texture;
-  try {
-    texture = useTexture(texturePath);
-  } catch (error) {
-    console.warn(`Texture not found for ${planet?.id}, using color fallback`);
-    texture = null;
-  }
+  const texture = useMemo(() => {
+    if (!texturePath) return null;
+
+    const loader = new THREE.TextureLoader();
+    try {
+      const loadedTexture = loader.load(texturePath);
+      // Ensure the texture is correctly formatted
+      loadedTexture.colorSpace = THREE.SRGBColorSpace;
+      return loadedTexture;
+    } catch (error) {
+      console.warn(`Texture not found for ${planet?.id}, using color fallback`);
+      return null;
+    }
+  }, [texturePath]);
 
   // Memoize geometry to prevent unnecessary re-creation
   const geometry = useMemo(() => {
@@ -56,7 +114,7 @@ function Planet({ planet }) {
   const material = useMemo(() => {
     try {
       const materialParams = {
-        map: texture || null,
+        map: texture,
         color: planet?.color || '#ffffff',
         roughness: 0.7,
         metalness: 0.2
@@ -179,13 +237,17 @@ function SolarSystem({ planets }) {
 
   // Position planets based on their distance from the sun with better spacing
   const positionedPlanets = useMemo(() => {
+    if (!planets || !Array.isArray(planets) || planets.length === 0) {
+      return [];
+    }
+
     return planets.map((planet, index) => {
       // Much better orbital spacing based on actual distance and index
       const baseDistance = 8; // Starting distance
       const distanceIncrement = 6; // Space between each planet
       const scaledDistance = baseDistance + (index * distanceIncrement);
       // Use actual orbital position with slight angle variation
-      const angle = index * (Math.PI * 2 / planets.length) + (index * 0.3);
+      const angle = index * (Math.PI * 2 / Math.max(planets.length, 1)) + (index * 0.3);
       const verticalOffset = (index % 2 === 0) ? 1.5 : -1.5; // Alternating vertical position
 
       return {
@@ -203,27 +265,29 @@ function SolarSystem({ planets }) {
   return (
     <group ref={systemRef}>
       {/* Sun at the center */}
-      <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[2, 32, 32]} />
-        <meshStandardMaterial color="#FDB813" emissive="#FDB813" emissiveIntensity={0.5} />
-      </mesh>
+      <Sun />
 
       {positionedPlanets.map(planet => {
         const geometry = new THREE.SphereGeometry(planet.size, 32, 32);
         const texturePath = textureMap[planet.id];
-        let texture;
-        try {
-          texture = useTexture(texturePath);
-        } catch (error) {
-          console.warn(`Texture not found for ${planet.id}, using color fallback`);
-          texture = null;
-        }
+        const texture = useMemo(() => {
+          if (!texturePath) return null;
+          const loader = new THREE.TextureLoader();
+          try {
+            const loadedTexture = loader.load(texturePath);
+            loadedTexture.colorSpace = THREE.SRGBColorSpace;
+            return loadedTexture;
+          } catch (error) {
+            console.warn(`Texture not found for ${planet.id}, using color fallback`);
+            return null;
+          }
+        }, [texturePath]);
 
         return (
           <group key={planet.id} position={planet.position}>
             <mesh geometry={geometry}>
               <meshStandardMaterial
-                map={texture || null}
+                map={texture}
                 color={planet.color}
                 roughness={0.7}
                 metalness={0.2}
@@ -270,6 +334,19 @@ SolarSystem.propTypes = {
  * Main SpaceScene component that can show either individual planets or the entire solar system
  */
 function SpaceScene({ planet, planets = [], showSolarSystem = false }) {
+  // Load milky way background texture
+  const milkyWayTexture = useMemo(() => {
+    const loader = new THREE.TextureLoader();
+    try {
+      const loadedTexture = loader.load('/textures/milky_way.jpg');
+      loadedTexture.colorSpace = THREE.SRGBColorSpace;
+      return loadedTexture;
+    } catch (error) {
+      console.warn('Milky way texture not found, using black background');
+      return null;
+    }
+  }, []);
+
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <Canvas
@@ -279,11 +356,17 @@ function SpaceScene({ planet, planets = [], showSolarSystem = false }) {
           near: 0.1,
           far: 1000
         }}
-        style={{ background: 'black' }}
+        style={{ background: '#000000' }}
         gl={{
           antialias: true,
           alpha: false,
           powerPreference: 'high-performance'
+        }}
+        onCreated={({ scene }) => {
+          // Set milky way texture as the scene background
+          if (milkyWayTexture) {
+            scene.background = milkyWayTexture;
+          }
         }}
       >
         <ambientLight intensity={0.3} />

@@ -1,11 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const planetRoutes = require('./routes/planets');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Serve static files from client/public (for textures and other assets)
+app.use('/textures', express.static(path.join(__dirname, '../client/public/textures')));
 
 // Security and performance middleware
 app.use(cors({
