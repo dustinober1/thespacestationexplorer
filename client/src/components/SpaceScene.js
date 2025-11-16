@@ -1,6 +1,5 @@
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { XR, VRButton } from '@react-three/xr';
 import { OrbitControls, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import PropTypes from 'prop-types';
@@ -263,20 +262,18 @@ SolarSystem.propTypes = {
 function SpaceScene({ planet, planets = [], showSolarSystem = false }) {
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
-      <VRButton />
       <Canvas
-        camera={{ 
-          position: showSolarSystem ? [0, 30, 60] : [0, 0, planet ? 8 : 20], 
-          fov: showSolarSystem ? 60 : 60 
+        camera={{
+          position: showSolarSystem ? [0, 30, 60] : [0, 0, planet ? 8 : 20],
+          fov: showSolarSystem ? 60 : 60
         }}
         style={{ background: 'transparent' }}
         gl={{ antialias: true }}
       >
-        <XR>
         <ambientLight intensity={0.2} />
-        <pointLight position={[0, 0, 0]} intensity={1.5} color="#FDB813" /> {/* Sun */}
+        <pointLight position={[0, 0, 0]} intensity={1.5} color="#FDB813" />
         <pointLight position={[10, 10, 10]} intensity={0.5} />
-        
+
         <Stars
           radius={300}
           depth={50}
@@ -286,7 +283,7 @@ function SpaceScene({ planet, planets = [], showSolarSystem = false }) {
           fade
           speed={1}
         />
-        
+
         {showSolarSystem ? (
           <>
             <SolarSystem planets={planets} />
@@ -297,14 +294,13 @@ function SpaceScene({ planet, planets = [], showSolarSystem = false }) {
         ) : (
           <AsteroidBelt />
         )}
-        
+
         <OrbitControls
           enablePan={false}
           minDistance={showSolarSystem ? 10 : planet ? 3 : 10}
           maxDistance={showSolarSystem ? 200 : planet ? 15 : 50}
           rotateSpeed={0.5}
         />
-        </XR>
       </Canvas>
     </div>
   );
